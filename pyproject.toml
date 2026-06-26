@@ -1,0 +1,148 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.backends.legacy:build"
+
+[project]
+name = "smsip"
+version = "1.0.0"
+description = "Social Media Sentiment Intelligence Platform — Enterprise AI analytics"
+readme = "README.md"
+license = { text = "MIT" }
+authors = [{ name = "Aranya Ghosh", email = "contact@aranyaghosh.org" }]
+requires-python = ">=3.11"
+keywords = [
+  "sentiment-analysis", "nlp", "social-media", "ai", "machine-learning",
+  "bert", "roberta", "real-time", "analytics", "fastapi",
+]
+classifiers = [
+  "Development Status :: 4 - Beta",
+  "Intended Audience :: Developers",
+  "Intended Audience :: Science/Research",
+  "License :: OSI Approved :: MIT License",
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12",
+  "Topic :: Scientific/Engineering :: Artificial Intelligence",
+  "Topic :: Internet :: WWW/HTTP :: HTTP Servers",
+  "Framework :: FastAPI",
+]
+
+[project.urls]
+Homepage    = "https://github.com/Aranya2801/social-media-sentiment-intelligence"
+Repository  = "https://github.com/Aranya2801/social-media-sentiment-intelligence"
+Issues      = "https://github.com/Aranya2801/social-media-sentiment-intelligence/issues"
+Research    = "https://aranyaghosh.org"
+
+[project.scripts]
+smsip-server = "backend.main:app"
+smsip-train  = "ml.training.train_sentiment:main"
+smsip-worker = "backend.workers.stream_processor:app.main"
+
+# ── Tool configurations ────────────────────────────────────────────────────────
+
+[tool.black]
+line-length = 100
+target-version = ["py311"]
+include = '\.pyi?$'
+exclude = '''/(\.git|\.venv|venv|build|dist|migrations)/'''
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
+select = [
+  "E",   # pycodestyle errors
+  "W",   # pycodestyle warnings
+  "F",   # pyflakes
+  "I",   # isort
+  "B",   # flake8-bugbear
+  "C4",  # flake8-comprehensions
+  "UP",  # pyupgrade
+  "ANN", # annotations (partial)
+  "S",   # bandit security
+  "RUF", # Ruff-specific
+]
+ignore = [
+  "ANN101", "ANN102", "ANN204", "ANN401",
+  "S101",   # Allow assert in tests
+  "S603",   # Allow subprocess in scripts
+  "B008",   # FastAPI Depends() in function args
+  "E501",   # Line too long (handled by black)
+]
+
+[tool.ruff.per-file-ignores]
+"tests/**" = ["ANN", "S"]
+"scripts/**" = ["ANN", "S"]
+"ml/training/**" = ["ANN"]
+"notebooks/**" = ["ANN", "F401"]
+
+[tool.ruff.isort]
+known-first-party = ["backend", "ml"]
+force-sort-within-sections = true
+
+[tool.mypy]
+python_version = "3.11"
+strict = false
+warn_return_any = true
+warn_unused_configs = true
+ignore_missing_imports = true
+exclude = ["tests/", "notebooks/", "scripts/", "ml/training/"]
+
+[[tool.mypy.overrides]]
+module = ["transformers.*", "torch.*", "sklearn.*", "bertopic.*"]
+ignore_missing_imports = true
+
+[tool.pytest.ini_options]
+asyncio_mode = "auto"
+testpaths = ["tests"]
+python_files = ["test_*.py"]
+python_classes = ["Test*"]
+python_functions = ["test_*"]
+addopts = [
+  "-v",
+  "--tb=short",
+  "--strict-markers",
+  "-p", "no:warnings",
+]
+markers = [
+  "unit: fast unit tests",
+  "integration: integration tests requiring services",
+  "api: API endpoint tests",
+  "model: ML model tests",
+  "requires_gpu: tests requiring CUDA GPU",
+  "requires_pretrained: tests requiring downloaded model weights",
+  "slow: slow tests (>10 seconds)",
+]
+filterwarnings = [
+  "ignore::DeprecationWarning",
+  "ignore::UserWarning:torch",
+  "ignore::FutureWarning:transformers",
+]
+
+[tool.coverage.run]
+source = ["backend", "ml"]
+omit = [
+  "*/tests/*",
+  "*/migrations/*",
+  "*/__pycache__/*",
+  "*/notebooks/*",
+]
+
+[tool.coverage.report]
+precision = 2
+show_missing = true
+skip_covered = false
+fail_under = 80
+exclude_lines = [
+  "pragma: no cover",
+  "def __repr__",
+  "if self.debug:",
+  "if settings.DEBUG",
+  "raise NotImplementedError",
+  "if __name__ == .__main__.:",
+  "pass",
+  "\\.\\.\\.",
+]
+
+[tool.bandit]
+targets = ["backend", "ml"]
+skips = ["B101", "B601", "B311"]

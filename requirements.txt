@@ -1,0 +1,129 @@
+# ─── Web Framework ────────────────────────────────────────────────────────────
+fastapi==0.104.1
+uvicorn[standard]==0.24.0
+python-multipart==0.0.6
+httpx==0.25.2
+pydantic==2.5.2
+pydantic-settings==2.1.0
+email-validator==2.1.0
+
+# ─── Authentication ───────────────────────────────────────────────────────────
+python-jose[cryptography]==3.3.0
+passlib[bcrypt]==1.7.4
+
+# ─── Database ─────────────────────────────────────────────────────────────────
+sqlalchemy==2.0.23
+asyncpg==0.29.0
+alembic==1.12.1
+psycopg2-binary==2.9.9
+
+# ─── Cache / Queue ────────────────────────────────────────────────────────────
+redis[hiredis]==5.0.1
+aiokafka==0.9.0
+faust-streaming==0.10.14
+
+# ─── ML / Deep Learning ──────────────────────────────────────────────────────
+torch==2.1.1
+torchvision==0.16.1
+torchaudio==2.1.1
+transformers==4.35.2
+accelerate==0.24.1
+tokenizers==0.15.0
+sentencepiece==0.1.99
+protobuf==4.25.1
+
+# ─── NLP ──────────────────────────────────────────────────────────────────────
+sentence-transformers==2.2.2
+bertopic==0.16.0
+umap-learn==0.5.5
+hdbscan==0.8.33
+langdetect==1.0.9
+spacy==3.7.2
+
+# ─── Classical ML ─────────────────────────────────────────────────────────────
+scikit-learn==1.3.2
+xgboost==2.0.2
+lightgbm==4.1.0
+optuna==3.4.0
+
+# ─── Time Series ──────────────────────────────────────────────────────────────
+prophet==1.1.5
+statsmodels==0.14.0
+
+# ─── Graph Analysis ───────────────────────────────────────────────────────────
+networkx==3.2.1
+python-louvain==0.16
+
+# ─── Data Processing ──────────────────────────────────────────────────────────
+pandas==2.1.3
+numpy==1.26.2
+polars==0.19.14
+pyarrow==14.0.1
+scipy==1.11.4
+
+# ─── Visualization ────────────────────────────────────────────────────────────
+plotly==5.18.0
+dash==2.14.2
+matplotlib==3.8.2
+seaborn==0.13.0
+wordcloud==1.9.3
+pillow==10.1.0
+
+# ─── Report Generation ───────────────────────────────────────────────────────
+weasyprint==60.2
+jinja2==3.1.2
+reportlab==4.0.7
+fpdf2==2.7.6
+
+# ─── LLM Integration ──────────────────────────────────────────────────────────
+openai==1.3.7
+anthropic==0.7.7
+
+# ─── Social Media APIs ────────────────────────────────────────────────────────
+tweepy==4.14.0
+praw==7.7.1
+google-api-python-client==2.108.0
+newsapi-python==0.2.7
+
+# ─── MLOps ────────────────────────────────────────────────────────────────────
+mlflow==2.8.1
+great-expectations==0.18.7
+evidently==0.4.11
+
+# ─── Monitoring & Observability ──────────────────────────────────────────────
+prometheus-client==0.19.0
+structlog==23.2.0
+sentry-sdk[fastapi]==1.38.0
+opentelemetry-api==1.21.0
+opentelemetry-sdk==1.21.0
+opentelemetry-instrumentation-fastapi==0.42b0
+
+# ─── Utilities ────────────────────────────────────────────────────────────────
+python-dotenv==1.0.0
+httpx==0.25.2
+aiofiles==23.2.1
+celery[redis]==5.3.6
+tenacity==8.2.3
+pydantic-extra-types==2.1.0
+orjson==3.9.10
+ujson==5.9.0
+anyio==4.1.0
+
+# ─── Testing ──────────────────────────────────────────────────────────────────
+pytest==7.4.3
+pytest-asyncio==0.21.1
+pytest-cov==4.1.0
+pytest-mock==3.12.0
+pytest-xdist==3.5.0
+httpx==0.25.2
+factory-boy==3.3.0
+faker==20.1.0
+locust==2.19.0
+
+# ─── Code Quality ─────────────────────────────────────────────────────────────
+ruff==0.1.7
+black==23.11.0
+mypy==1.7.1
+pre-commit==3.5.0
+bandit==1.7.5
+safety==2.3.5
